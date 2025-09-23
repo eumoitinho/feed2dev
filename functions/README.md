@@ -1,79 +1,48 @@
-# Feed2Dev Appwrite Functions
+# ⚡ Node.js Starter Function
 
-This directory contains the Appwrite Functions for the Feed2Dev project.
+A simple starter function. Edit `src/main.js` to get started and create something awesome! 🚀
 
-## Setup
+## 🧰 Usage
 
-1. Install Appwrite CLI:
-```bash
-npm install -g appwrite-cli
+### GET /ping
+
+- Returns a "Pong" message.
+
+**Response**
+
+Sample `200` Response:
+
+```text
+Pong
 ```
 
-2. Login to your Appwrite account:
-```bash
-appwrite login
-```
+### GET, POST, PUT, PATCH, DELETE /
 
-3. Deploy the function:
-```bash
-cd functions
-appwrite deploy function
-```
+- Returns a "Learn More" JSON response.
 
-## API Endpoints
+**Response**
 
-### POST /feedback
-Submit new feedback for a project.
+Sample `200` Response:
 
-**Request Body:**
 ```json
 {
-  "projectId": "string",
-  "description": "string",
-  "email": "string (optional)",
-  "url": "string (optional)",
-  "screenshot": "string (base64 optional)"
+  "motto": "Build like a team of hundreds_",
+  "learn": "https://appwrite.io/docs",
+  "connect": "https://appwrite.io/discord",
+  "getInspired": "https://builtwith.appwrite.io"
 }
 ```
 
-**Response:**
-```json
-{
-  "success": true,
-  "data": {
-    "id": "feedback_id",
-    "message": "Feedback submitted successfully"
-  }
-}
-```
+## ⚙️ Configuration
 
-### GET /project?id=PROJECT_ID
-Get project configuration for widget initialization.
+| Setting           | Value         |
+| ----------------- | ------------- |
+| Runtime           | Node (18.0)   |
+| Entrypoint        | `src/main.js` |
+| Build Commands    | `npm install` |
+| Permissions       | `any`         |
+| Timeout (Seconds) | 15            |
 
-**Response:**
-```json
-{
-  "success": true,
-  "data": {
-    "id": "project_id",
-    "name": "Project Name",
-    "domain": "example.com",
-    "title": "Send us your feedback",
-    "subtitle": "Help us improve by sharing your thoughts"
-  }
-}
-```
+## 🔒 Environment Variables
 
-## Environment Variables
-
-The function automatically receives these Appwrite environment variables:
-- `APPWRITE_FUNCTION_ENDPOINT`
-- `APPWRITE_FUNCTION_PROJECT_ID`
-- `APPWRITE_API_KEY`
-
-## Database IDs
-
-- Database: `68d2f67900061b5bc926`
-- Projects Collection: `68d2f67c000a49ed8139`
-- Feedbacks Collection: `68d2f68300087b90de3c`
-- Storage Bucket: `68d2f698001ea7b21ee9`
+No environment variables required.

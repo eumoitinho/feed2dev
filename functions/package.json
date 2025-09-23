@@ -1,16 +1,16 @@
 {
-  "name": "feed2dev-functions",
+  "name": "starter-template",
   "version": "1.0.0",
-  "description": "Appwrite Functions for Feed2Dev",
-  "main": "index.js",
+  "description": "",
+  "main": "src/main.js",
+  "type": "module",
   "scripts": {
-    "build": "echo 'Build complete'",
-    "start": "node index.js"
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "node-appwrite": "^13.0.0"
+    "node-appwrite": "^14.1.0"
   },
-  "engines": {
-    "node": ">=18.0.0"
+  "devDependencies": {
+    "prettier": "^3.2.5"
   }
 }
