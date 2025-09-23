@@ -10,32 +10,45 @@
 
 .feed2dev-trigger {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 56px;
-  height: 56px;
+  top: 50%;
+  right: 0;
+  width: 60px;
+  height: 120px;
   background: var(--f2d-primary);
   border: none;
-  border-radius: 50%;
+  border-radius: 8px 0 0 8px;
   color: white;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
   z-index: 9998;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+  transform: translateY(-50%);
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
 .feed2dev-trigger:hover {
   background: var(--f2d-primary-hover);
-  transform: scale(1.05);
+  transform: translateY(-50%) translateX(-10px);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.25);
 }
 
 .feed2dev-trigger svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   fill: white;
+}
+
+.feed2dev-trigger-text {
+  font-size: 11px;
+  font-weight: 500;
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  letter-spacing: 1px;
 }
 
 .feed2dev-modal {
@@ -154,6 +167,102 @@
   padding: 20px;
   text-align: center;
   background: #f9fafb;
+}
+
+.feed2dev-annotation-tools {
+  display: none;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid var(--f2d-border);
+}
+
+.feed2dev-annotation-tools.active {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.feed2dev-tool-group {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.feed2dev-tool-separator {
+  width: 1px;
+  height: 24px;
+  background: var(--f2d-border);
+  margin: 0 8px;
+}
+
+.feed2dev-annotation-tool {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--f2d-border);
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.feed2dev-annotation-tool:hover {
+  border-color: var(--f2d-primary);
+  background: #f0f4ff;
+}
+
+.feed2dev-annotation-tool.active {
+  background: var(--f2d-primary);
+  color: white;
+  border-color: var(--f2d-primary);
+}
+
+.feed2dev-color-selector {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.feed2dev-color-option {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.feed2dev-color-option.active {
+  border-color: #333;
+  transform: scale(1.1);
+}
+
+.feed2dev-brush-size {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feed2dev-brush-size input {
+  width: 60px;
+}
+
+.feed2dev-canvas-container {
+  position: relative;
+  margin-top: 12px;
+}
+
+.feed2dev-annotation-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: crosshair;
+  z-index: 10;
 }
 
 .feed2dev-screenshot-preview {
