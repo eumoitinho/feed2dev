@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed2Dev Widget Test</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: #a8e6cf;
+        }
+        .cta {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Feed2Dev Test Page</h1>
+        <p>Esta é uma página de teste para o sistema de feedback Feed2Dev</p>
+        
+        <div class="card">
+            <h2>Teste o Widget de Feedback</h2>
+            <p>Clique no botão de feedback no canto inferior direito para testar o sistema!</p>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>📸 Screenshots</h3>
+                <p>Capture automaticamente a tela atual com anotações visuais</p>
+            </div>
+            <div class="feature">
+                <h3>✨ Interface Intuitiva</h3>
+                <p>Design moderno e fácil de usar para todos os usuários</p>
+            </div>
+            <div class="feature">
+                <h3>🔧 Fácil Integração</h3>
+                <p>Apenas duas linhas de código para adicionar ao seu site</p>
+            </div>
+        </div>
+
+        <div class="cta">
+            <h2>Pronto para começar?</h2>
+            <p>Teste enviando um feedback usando o widget abaixo</p>
+        </div>
+    </div>
+
+    <!-- Feed2Dev Widget -->
+    <script src="./widget/dist/widget.js"></script>
+    <script>
+        // Configuração do widget Feed2Dev
+        Feed2Dev.init({
+            projectId: 'test-project', // Substitua pelo ID do seu projeto
+            appwriteEndpoint: 'https://sfo.cloud.appwrite.io/v1',
+            appwriteProjectId: '68d2f6720002e0a23941',
+            position: 'bottom-right',
+            primaryColor: '#667eea',
+            title: 'Enviar Feedback',
+            subtitle: 'Adoraríamos ouvir sua opinião!',
+            onSuccess: () => {
+                alert('Feedback enviado com sucesso! 🎉');
+            },
+            onError: (error) => {
+                console.error('Erro ao enviar feedback:', error);
+                alert('Erro ao enviar feedback. Tente novamente.');
+            }
+        });
+    </script>
+</body>
+</html>

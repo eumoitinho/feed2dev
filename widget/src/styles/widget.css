@@ -1,0 +1,316 @@
+.feed2dev-widget {
+  --f2d-primary: #6366f1;
+  --f2d-primary-hover: #4f46e5;
+  --f2d-secondary: #f3f4f6;
+  --f2d-text: #1f2937;
+  --f2d-border: #e5e7eb;
+  --f2d-danger: #ef4444;
+  --f2d-success: #10b981;
+}
+
+.feed2dev-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: var(--f2d-primary);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feed2dev-trigger:hover {
+  background: var(--f2d-primary-hover);
+  transform: scale(1.05);
+}
+
+.feed2dev-trigger svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+.feed2dev-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.feed2dev-modal.active {
+  display: flex;
+}
+
+.feed2dev-container {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.feed2dev-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--f2d-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feed2dev-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--f2d-text);
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.feed2dev-close {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.feed2dev-close:hover {
+  color: var(--f2d-text);
+}
+
+.feed2dev-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.feed2dev-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.feed2dev-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feed2dev-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feed2dev-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--f2d-text);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.feed2dev-input,
+.feed2dev-textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--f2d-border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: border-color 0.2s;
+}
+
+.feed2dev-input:focus,
+.feed2dev-textarea:focus {
+  outline: none;
+  border-color: var(--f2d-primary);
+}
+
+.feed2dev-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.feed2dev-screenshot-area {
+  border: 2px dashed var(--f2d-border);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  background: #f9fafb;
+}
+
+.feed2dev-screenshot-preview {
+  margin-top: 12px;
+  position: relative;
+}
+
+.feed2dev-screenshot-preview img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--f2d-border);
+}
+
+.feed2dev-screenshot-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: white;
+  border: 1px solid var(--f2d-border);
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--f2d-danger);
+}
+
+.feed2dev-tools {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.feed2dev-tool {
+  padding: 8px 16px;
+  border: 1px solid var(--f2d-border);
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.feed2dev-tool:hover {
+  border-color: var(--f2d-primary);
+  color: var(--f2d-primary);
+}
+
+.feed2dev-tool.active {
+  background: var(--f2d-primary);
+  color: white;
+  border-color: var(--f2d-primary);
+}
+
+.feed2dev-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--f2d-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.feed2dev-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.feed2dev-btn-primary {
+  background: var(--f2d-primary);
+  color: white;
+  border: none;
+}
+
+.feed2dev-btn-primary:hover {
+  background: var(--f2d-primary-hover);
+}
+
+.feed2dev-btn-secondary {
+  background: white;
+  color: var(--f2d-text);
+  border: 1px solid var(--f2d-border);
+}
+
+.feed2dev-btn-secondary:hover {
+  background: var(--f2d-secondary);
+}
+
+.feed2dev-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.feed2dev-canvas-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  cursor: crosshair;
+  display: none;
+}
+
+.feed2dev-canvas-overlay.active {
+  display: block;
+}
+
+.feed2dev-drawing-tools {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  gap: 8px;
+  z-index: 10001;
+}
+
+.feed2dev-color-picker {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid var(--f2d-border);
+  cursor: pointer;
+}
+
+.feed2dev-success-message {
+  text-align: center;
+  padding: 40px;
+}
+
+.feed2dev-success-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  color: var(--f2d-success);
+}
+
+.feed2dev-success-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--f2d-text);
+  margin-bottom: 8px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.feed2dev-success-text {
+  color: #6b7280;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
