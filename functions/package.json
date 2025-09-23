@@ -1,0 +1,16 @@
+{
+  "name": "feed2dev-functions",
+  "version": "1.0.0",
+  "description": "Appwrite Functions for Feed2Dev",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "node-appwrite": "^13.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
