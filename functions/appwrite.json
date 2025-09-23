@@ -1,0 +1,23 @@
+{
+  "projectId": "68d2f6720002e0a23941",
+  "functions": [
+    {
+      "functionId": "feedback-api",
+      "name": "Feedback API",
+      "runtime": "node-18.0",
+      "execute": ["any"],
+      "events": [],
+      "schedule": "",
+      "timeout": 15,
+      "enabled": true,
+      "logging": true,
+      "entrypoint": "index.js",
+      "commands": "npm install",
+      "ignore": [
+        "node_modules",
+        ".git"
+      ],
+      "variables": {}
+    }
+  ]
+}

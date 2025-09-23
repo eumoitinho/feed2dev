@@ -1,57 +1,44 @@
-import { Client, Databases, Storage, ID } from 'appwrite';
 import { FeedbackData } from '../types';
 
 export class ApiClient {
-  private client: Client;
-  private databases: Databases;
-  private storage: Storage;
+  private functionEndpoint: string;
 
   constructor(appwriteEndpoint: string, appwriteProjectId: string) {
-    this.client = new Client()
-      .setEndpoint(appwriteEndpoint)
-      .setProject(appwriteProjectId);
-    
-    this.databases = new Databases(this.client);
-    this.storage = new Storage(this.client);
+    // Use Appwrite Function endpoint instead of direct SDK
+    this.functionEndpoint = `${appwriteEndpoint}/functions/feedback-api/executions`;
   }
 
   async submitFeedback(data: FeedbackData): Promise<void> {
     try {
-      let screenshotId = null;
-
-      // Upload screenshot if provided
-      if (data.screenshot) {
-        try {
-          // Convert base64 to blob
-          const base64Data = data.screenshot.split(',')[1];
-          const blob = new Blob([Uint8Array.from(atob(base64Data), c => c.charCodeAt(0))], { type: 'image/png' });
-          const file = new File([blob], `screenshot-${Date.now()}.png`, { type: 'image/png' });
-
-          const uploadResult = await this.storage.createFile('screenshots', ID.unique(), file);
-          screenshotId = uploadResult.$id;
-        } catch (error) {
-          console.error('Screenshot upload failed:', error);
-        }
-      }
-
-      // Create feedback document
-      const feedbackData = {
+      const payload = {
         projectId: data.projectId,
         description: data.description,
-        email: data.email || '',
-        screenshot: screenshotId,
-        metadata: JSON.stringify(data.metadata),
+        email: data.email || null,
         url: data.metadata.url,
-        userAgent: data.metadata.userAgent || '',
-        status: 'NEW'
+        screenshot: data.screenshot || null
       };
 
-      await this.databases.createDocument(
-        'feed2dev-main',
-        'feedbacks',
-        ID.unique(),
-        feedbackData
-      );
+      const response = await fetch(this.functionEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          path: '/feedback',
+          method: 'POST',
+          body: JSON.stringify(payload)
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to submit feedback');
+      }
     } catch (error) {
       console.error('API Error:', error);
       throw error;

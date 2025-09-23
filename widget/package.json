@@ -23,7 +23,6 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "appwrite": "^13.0.0",
     "html2canvas": "^1.4.1"
   }
 }
