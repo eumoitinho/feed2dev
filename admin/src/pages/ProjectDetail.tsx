@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, Link } from 'react-router-dom';
 import { projectService, feedbackService } from '../services/appwrite';
@@ -27,20 +27,7 @@ export default function ProjectDetail() {
     }),
   });
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'NEW':
-        return 'bg-blue-100 text-blue-800';
-      case 'IN_PROGRESS':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'RESOLVED':
-        return 'bg-green-100 text-green-800';
-      case 'ARCHIVED':
-        return 'bg-gray-100 text-gray-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
+  // no-op
 
   if (projectLoading) {
     return (
@@ -177,8 +164,8 @@ export default function ProjectDetail() {
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Response Rate</span>
                   <span className="text-lg font-semibold text-indigo-600">
-                    {project._count?.feedbacks > 0 
-                      ? Math.round((feedbackData?.feedbacks.filter(f => f.status === 'RESOLVED').length || 0) / project._count.feedbacks * 100)
+                    {(project._count?.feedbacks ?? 0) > 0 
+                      ? Math.round(((feedbackData?.feedbacks.filter(f => f.status === 'RESOLVED').length || 0) / (project._count?.feedbacks ?? 1)) * 100)
                       : 0}%
                   </span>
                 </div>

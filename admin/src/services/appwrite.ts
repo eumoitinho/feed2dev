@@ -1,6 +1,6 @@
 import { ID, Query } from 'appwrite';
 import { account, databases, storage, DATABASE_ID, COLLECTIONS, STORAGE_BUCKET_ID } from '../config/appwrite';
-import { User, Project, Feedback, CreateProjectData } from '../types';
+import { Project, Feedback, CreateProjectData } from '../types';
 
 export const authService = {
   async login(email: string, password: string) {
@@ -70,7 +70,7 @@ export const projectService = {
     );
 
     // Get feedback counts for each project
-    const projectsWithCounts = await Promise.all(
+    const projectsWithCounts: Project[] = await Promise.all(
       response.documents.map(async (project) => {
         const feedbackCount = await databases.listDocuments(
           DATABASE_ID,
@@ -78,7 +78,7 @@ export const projectService = {
           [Query.equal('projectId', project.$id), Query.limit(1)]
         );
 
-        return {
+        const result = {
           ...project,
           id: project.$id,
           createdAt: project.$createdAt,
@@ -86,7 +86,10 @@ export const projectService = {
           _count: {
             feedbacks: feedbackCount.total
           }
-        } as Project;
+        };
+
+        // cast via unknown to the Project interface since Appwrite returns generic payload
+        return result as unknown as Project;
       })
     );
 

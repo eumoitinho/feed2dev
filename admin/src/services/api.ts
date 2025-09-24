@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { useAuthStore } from '../store/auth';
 import { 
   LoginData, 
@@ -13,17 +13,18 @@ const api = axios.create({
   baseURL: 'http://localhost:3001/api',
 });
 
-api.interceptors.request.use((config) => {
+api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = useAuthStore.getState().token;
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    // Axios v1 headers is AxiosHeaders with helper methods
+    config.headers.set('Authorization', `Bearer ${token}`);
   }
   return config;
 });
 
 api.interceptors.response.use(
-  (response) => response,
-  (error) => {
+  (response: AxiosResponse) => response,
+  (error: AxiosError) => {
     if (error.response?.status === 401) {
       useAuthStore.getState().logout();
     }

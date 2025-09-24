@@ -12,6 +12,7 @@ interface AppwriteUser {
 interface AuthState {
   user: AppwriteUser | null;
   isAuthenticated: boolean;
+  token?: string | null;
   setAuth: (user: AppwriteUser) => void;
   logout: () => void;
 }
@@ -21,8 +22,9 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       user: null,
       isAuthenticated: false,
+      token: null,
       setAuth: (user) => set({ user, isAuthenticated: true }),
-      logout: () => set({ user: null, isAuthenticated: false }),
+      logout: () => set({ user: null, isAuthenticated: false, token: null }),
     }),
     {
       name: 'feed2dev-auth',
